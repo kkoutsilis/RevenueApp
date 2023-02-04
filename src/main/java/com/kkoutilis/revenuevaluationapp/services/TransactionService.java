@@ -39,4 +39,8 @@ public class TransactionService {
         float revenue = income - expenses;
         return new Report(income, expenses, revenue);
     }
+
+    public List<Transaction> saveAll(List<Transaction> transactions) {
+        return this.repository.saveAll(transactions);
+    }
 }
