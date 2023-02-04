@@ -1,6 +1,5 @@
 package com.kkoutilis.revenuevaluationapp.controllers;
 
-
 import com.kkoutilis.revenuevaluationapp.CsvUtils;
 import com.kkoutilis.revenuevaluationapp.DTOs.Report;
 import com.kkoutilis.revenuevaluationapp.models.Transaction;
@@ -25,7 +24,6 @@ public class TransactionController {
         this.service = service;
     }
 
-
     @GetMapping("/transactions")
     public List<Transaction> getAll() {
         return this.service.getAll();
@@ -34,6 +32,12 @@ public class TransactionController {
     @PostMapping("/transactions")
     public Transaction create(@RequestBody Transaction transaction) {
         return service.create(transaction);
+    }
+
+    @DeleteMapping("/transactions")
+    public boolean deleteAll() {
+        service.deleteAll();
+        return true;
     }
 
     @DeleteMapping("/transactions/{id}")
@@ -55,6 +59,5 @@ public class TransactionController {
     public List<Transaction> uploadMultipart(@RequestParam("file") MultipartFile file) throws IOException {
         return service.saveAll(CsvUtils.read(Transaction.class, file.getInputStream()));
     }
-
 
 }

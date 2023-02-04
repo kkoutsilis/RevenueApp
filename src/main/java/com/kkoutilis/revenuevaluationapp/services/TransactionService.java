@@ -43,4 +43,9 @@ public class TransactionService {
     public List<Transaction> saveAll(List<Transaction> transactions) {
         return this.repository.saveAll(transactions);
     }
+
+    public void deleteAll() {
+        List<Transaction> transactions = this.getAll();
+        this.repository.deleteAll(transactions);
+    }
 }
