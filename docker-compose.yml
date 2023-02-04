@@ -7,3 +7,16 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=revenuedb
+    restart: always
+
+  spring-app:
+    image: openjdk:17-jdk-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ./gradlew bootRun --scan
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - db
